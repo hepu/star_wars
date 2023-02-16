@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: planet
+#
+#  id              :integer          not null, primary key
+#  climate         :string
+#  created         :datetime
+#  diameter        :string
+#  edited          :datetime
+#  gravity         :string
+#  name            :string
+#  orbital_period  :string
+#  population      :string
+#  rotation_period :string
+#  surface_water   :string
+#  terrain         :string
+#
+
+one:
+  name: MyString
+  diameter: MyString
+  rotation_period: MyString
+  orbital_period: MyString
+  gravity: MyString
+  population: MyString
+  climate: MyString
+  terrain: MyString
+  surface_water: MyString
+  created: 2023-02-15 15:15:08
+  edited: 2023-02-15 15:15:08
+
+two:
+  name: MyString
+  diameter: MyString
+  rotation_period: MyString
+  orbital_period: MyString
+  gravity: MyString
+  population: MyString
+  climate: MyString
+  terrain: MyString
+  surface_water: MyString
+  created: 2023-02-15 15:15:08
+  edited: 2023-02-15 15:15:08

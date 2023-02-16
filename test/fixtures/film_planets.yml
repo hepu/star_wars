@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: film_planet
+#
+#  id        :integer          not null, primary key
+#  film_id   :integer
+#  planet_id :integer
+#
+# Indexes
+#
+#  index_film_planet_on_film_id    (film_id)
+#  index_film_planet_on_planet_id  (planet_id)
+#
+
+one:
+  film_id: 1
+  planet_id: 1
+
+two:
+  film_id: 1
+  planet_id: 1
