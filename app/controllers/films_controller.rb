@@ -4,14 +4,14 @@ class FilmsController < ApplicationController
   def index
     @films = Film.all
 
-    render json: @films
+    render json: serialized_film(@films)
   end
 
   def create
     @film = Film.new(film_params)
     @film.save!
 
-    render json: @film, status: :created
+    render json: serialized_film(@film), status: :created
   rescue StandardError => e
     Rails.logger.error("[FilmsController#create]: Error creating Film: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -20,14 +20,14 @@ class FilmsController < ApplicationController
   def show
     return head(:not_found) unless @film.present?
 
-    render json: @film, status: :ok
+    render json: serialized_film(@film), status: :ok
   end
 
   def update
     @film.attributes = film_params
     @film.save!
 
-    render json: @film, status: :ok
+    render json: serialized_film(@film), status: :ok
   rescue StandardError => e
     Rails.logger.error("[FilmsController#update]: Error updating Film: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -63,5 +63,9 @@ class FilmsController < ApplicationController
   
   def find_film
     @film = Film.find_by(id: params[:id])
+  end
+  
+  def serialized_film(film)
+    FilmSerializer.new(film).serialized_json
   end
 end

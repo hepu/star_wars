@@ -1,5 +1,7 @@
 class Person < ApplicationRecord
   belongs_to :planet
+  
+  paginates_per 50
 end
 
 # == Schema Information

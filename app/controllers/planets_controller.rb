@@ -2,16 +2,16 @@ class PlanetsController < ApplicationController
   before_action :find_planet, only: %i[show update destroy]
 
   def index
-    @planets = Planet.all
+    @planets = Planet.page(params[:page]).per(params[:per_page])
 
-    render json: @planets
+    render json: serialized_planet(@planets)
   end
 
   def create
     @planet = Planet.new(planet_params)
     @planet.save!
 
-    render json: @planet, status: :created
+    render json: serialized_planet(@planet), status: :created
   rescue StandardError => e
     Rails.logger.error("[PlanetsController#create]: Error creating Planet: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -20,14 +20,14 @@ class PlanetsController < ApplicationController
   def show
     return head(:not_found) unless @planet.present?
 
-    render json: @planet, status: :ok
+    render json: serialized_planet(@planet), status: :ok
   end
 
   def update
     @planet.attributes = planet_params
     @planet.save!
 
-    render json: @planet, status: :ok
+    render json: serialized_planet(@planet), status: :ok
   rescue StandardError => e
     Rails.logger.error("[PlanetsController#update]: Error updating Planet: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -66,5 +66,9 @@ class PlanetsController < ApplicationController
   
   def find_planet
     @planet = Planet.find_by(id: params[:id])
+  end
+  
+  def serialized_planet(planet)
+    PlanetSerializer.new(planet).serialized_json
   end
 end

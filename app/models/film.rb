@@ -1,5 +1,8 @@
 class Film < ApplicationRecord
   self.table_name = 'film'
+  
+  has_many :film_planets
+  has_many :film_person
 end
 
 # == Schema Information

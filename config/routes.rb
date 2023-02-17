@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'film_people/index'
+  get 'film_people/create'
+  get 'film_people/show'
+  get 'film_people/update'
+  get 'film_people/destroy'
   get 'film_planets/index'
   get 'film_planets/create'
   get 'film_planets/show'

@@ -3,16 +3,16 @@ class PeopleController < ApplicationController
   before_action :validate_planet, only: %i[create update]
 
   def index
-    @people = Person.all
+    @people = Person.page(params[:page]).per(params[:per_page])
 
-    render json: @people
+    render json: serialized_person(@people)
   end
 
   def create
     @person = Person.new(person_params)
     @person.save!
 
-    render json: @person, status: :created
+    render json: serialized_person(@person), status: :created
   rescue StandardError => e
     Rails.logger.error("[PeopleController#create]: Error creating Person: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -21,14 +21,14 @@ class PeopleController < ApplicationController
   def show
     return head(:not_found) unless @person.present?
 
-    render json: @person, status: :ok
+    render json: serialized_person(@person), status: :ok
   end
 
   def update
     @person.attributes = person_params
     @person.save!
 
-    render json: @person, status: :ok
+    render json: serialized_person(@person), status: :ok
   rescue StandardError => e
     Rails.logger.error("[PeopleController#update]: Error updating Person: #{e.message}")
     render json: { error: e.message }, status: :bad_request
@@ -71,5 +71,9 @@ class PeopleController < ApplicationController
   
   def validate_planet
     return render(json: { error: 'Planet not found' }, status: :bad_request) unless Planet.exists?(person_params[:planet_id])
+  end
+  
+  def serialized_person(person)
+    PersonSerializer.new(person).serialized_json
   end
 end

@@ -48,3 +48,9 @@ end
 
 
 gem "annotate", "~> 3.2"
+
+gem "fast_jsonapi", "~> 1.5"
+
+gem "oj", "~> 3.14"
+
+gem "kaminari", "~> 1.2"

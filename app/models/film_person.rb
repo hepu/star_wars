@@ -1,6 +1,14 @@
 class FilmPerson < ApplicationRecord
   belongs_to :film
-  belongs_to :person, class_name: 'Person', foreign_key: :people_id
+  belongs_to :person, foreign_key: :people_id
+  
+  def people
+    self.person
+  end
+  
+  def person_id
+    self.people_id
+  end
 end
 
 # == Schema Information

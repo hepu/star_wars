@@ -1,5 +1,10 @@
 class Planet < ApplicationRecord
   self.table_name = 'planet'
+  
+  has_many :film_planets
+  has_many :people
+  
+  paginates_per 50
 end
 
 # == Schema Information
