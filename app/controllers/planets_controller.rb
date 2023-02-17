@@ -29,7 +29,7 @@ class PlanetsController < ApplicationController
 
     render json: @planet, status: :ok
   rescue StandardError => e
-    Rails.logger.error("[PlanetsController#create]: Error updating Planet: #{e.message}")
+    Rails.logger.error("[PlanetsController#update]: Error updating Planet: #{e.message}")
     render json: { error: e.message }, status: :bad_request
   end
 
@@ -38,9 +38,9 @@ class PlanetsController < ApplicationController
 
     @planet.destroy!
 
-    head :ok
+    head :no_content
   rescue StandardError => e
-    Rails.logger.error("[PlanetsController#create]: Error updating Planet: #{e.message}")
+    Rails.logger.error("[PlanetsController#destroy]: Error updating Planet: #{e.message}")
     render json: { error: e.message }, status: :bad_request
   end
   
