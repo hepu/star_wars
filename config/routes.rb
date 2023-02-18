@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  get 'film_people/index'
-  get 'film_people/create'
-  get 'film_people/show'
-  get 'film_people/update'
-  get 'film_people/destroy'
-  get 'film_planets/index'
-  get 'film_planets/create'
-  get 'film_planets/show'
-  get 'film_planets/update'
-  get 'film_planets/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   resources :planets, only: %i[index create show update destroy]
@@ -16,4 +6,14 @@ Rails.application.routes.draw do
   resources :people, only: %i[index create show update destroy]
   resources :film_people, only: %i[index create show update destroy]
   resources :film_planets, only: %i[index create show update destroy]
+  
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 end

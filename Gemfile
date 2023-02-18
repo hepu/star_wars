@@ -54,3 +54,9 @@ gem "fast_jsonapi", "~> 1.5"
 gem "oj", "~> 3.14"
 
 gem "kaminari", "~> 1.2"
+
+gem "devise", "~> 4.9"
+
+gem "rack-cors", "~> 2.0"
+
+gem "devise-jwt", "~> 0.10.0"
