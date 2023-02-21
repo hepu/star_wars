@@ -1,6 +1,8 @@
 class Person < ApplicationRecord
   belongs_to :planet
   
+  validates :name, uniqueness: true, presence: true
+  
   paginates_per 50
 end
 

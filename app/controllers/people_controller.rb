@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class PeopleController < AuthenticatedController
   before_action :find_person, only: %i[show update destroy]
   before_action :validate_planet, only: %i[create update]
 

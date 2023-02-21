@@ -4,6 +4,8 @@ class Planet < ApplicationRecord
   has_many :film_planets
   has_many :people
   
+  validates :name, uniqueness: true, presence: true
+  
   paginates_per 50
 end
 

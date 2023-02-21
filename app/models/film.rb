@@ -3,6 +3,8 @@ class Film < ApplicationRecord
   
   has_many :film_planets
   has_many :film_person
+  
+  validates :title, uniqueness: true, presence: true
 end
 
 # == Schema Information

@@ -1,4 +1,4 @@
-class PlanetsController < ApplicationController
+class PlanetsController < AuthenticatedController
   before_action :find_planet, only: %i[show update destroy]
 
   def index

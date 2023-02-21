@@ -1,4 +1,4 @@
-class FilmPeopleController < ApplicationController
+class FilmPeopleController < AuthenticatedController
   before_action :find_film_person, only: %i[show update destroy]
   before_action :validate_film, only: %i[create update]
   before_action :validate_person, only: %i[create update]
@@ -58,7 +58,7 @@ class FilmPeopleController < ApplicationController
   end
   
   def find_film_person
-    @film_person = FilmPerson.find_by(id: params[:id]).includes(:film, :person)
+    @film_person = FilmPerson.includes(:film, :person).find_by(id: params[:id])
   end
   
   def validate_film

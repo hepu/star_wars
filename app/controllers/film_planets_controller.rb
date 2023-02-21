@@ -1,4 +1,4 @@
-class FilmPlanetsController < ApplicationController
+class FilmPlanetsController < AuthenticatedController
   before_action :find_film_planet, only: %i[show update destroy]
   before_action :validate_film, only: %i[create update]
   before_action :validate_planet, only: %i[create update]

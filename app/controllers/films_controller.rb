@@ -1,4 +1,4 @@
-class FilmsController < ApplicationController
+class FilmsController < AuthenticatedController
   before_action :find_film, only: %i[show update destroy]
 
   def index
