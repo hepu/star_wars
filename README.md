@@ -37,6 +37,14 @@ This is a Ruby on Rails API mode application that uses Devise as authentication 
 
 Mails are served through MailHog package and UI can be accessed by going to [http://localhost:8025](http://localhost:8025) with or without Docker.
 
+### Authentication
+
+Authentication endpoints can be used to sign up, log in and log out from the API.
+
+- It all starts with signing up using the `POST /signup` endpoint, which returns the user details
+- Authenticating into the API its possible by using the `POST /login` endpoint, which returns the Bearer token on the response's Header (after a successful login)
+- Logging out its done by the `DELETE /logout` endpoint, which safely deletes the user session on the API
+
 ### Resetting password
 
 By using the **Reset Password** (`POST /password`) endpoint, a `reset_password_token` is returned and also sent via a link to the User's email.
