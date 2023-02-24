@@ -4,6 +4,10 @@ Ruby on Rails API that allows the user to get information from Star Wars through
 
 ## Getting Started
 
+### Requirements
+
+- `ruby 3.1.2`
+
 ### Installation
 
 #### With Docker (recommended)
