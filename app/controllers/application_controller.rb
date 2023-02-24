@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Kaminari::Helpers::UrlHelper
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

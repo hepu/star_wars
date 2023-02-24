@@ -4,8 +4,15 @@ class PeopleController < AuthenticatedController
 
   def index
     @people = Person.page(params[:page]).per(params[:per_page])
+    
+    meta = {
+      current_page: @people.current_page,
+      next_page: @people.next_page,
+      prev_page: @people.prev_page,
+      total_pages: @people.total_pages
+    }
 
-    render json: serialized_person(@people)
+    render json: serialized_person(@people, { meta: meta })
   end
 
   def create
@@ -66,14 +73,15 @@ class PeopleController < AuthenticatedController
   end
   
   def find_person
-    @person = Person.find_by(id: params[:id])
+    @person = Person.includes(:planet).find_by(id: params[:id])
   end
   
   def validate_planet
     return render(json: { error: 'Planet not found' }, status: :bad_request) unless Planet.exists?(person_params[:planet_id])
   end
   
-  def serialized_person(person)
-    PersonSerializer.new(person).serialized_json
+  def serialized_person(person, options = {})
+
+    PersonSerializer.new(person, { include: %i[planet] }.merge(options)).serialized_json
   end
 end

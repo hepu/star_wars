@@ -3,8 +3,14 @@ class PlanetsController < AuthenticatedController
 
   def index
     @planets = Planet.page(params[:page]).per(params[:per_page])
+    meta = {
+      current_page: @planets.current_page,
+      next_page: @planets.next_page,
+      prev_page: @planets.prev_page,
+      total_pages: @planets.total_pages
+    }
 
-    render json: serialized_planet(@planets)
+    render json: serialized_planet(@planets, { meta: meta })
   end
 
   def create
@@ -68,7 +74,7 @@ class PlanetsController < AuthenticatedController
     @planet = Planet.find_by(id: params[:id])
   end
   
-  def serialized_planet(planet)
-    PlanetSerializer.new(planet).serialized_json
+  def serialized_planet(planet, options = {})
+    PlanetSerializer.new(planet, options).serialized_json
   end
 end
