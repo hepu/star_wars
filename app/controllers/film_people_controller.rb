@@ -49,7 +49,7 @@ class FilmPeopleController < AuthenticatedController
   private
   
   def film_people_params
-    params.require(:film_people).permit(
+    params.require(:film_person).permit(
       %i[
         film_id
         people_id
