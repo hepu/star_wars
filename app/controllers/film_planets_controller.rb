@@ -58,7 +58,7 @@ class FilmPlanetsController < AuthenticatedController
   end
   
   def find_film_planet
-    @film_planet = FilmPlanet.find_by(id: params[:id]).includes(:film, :planet)
+    @film_planet = FilmPlanet.includes(:film, :planet).find_by(id: params[:id])
   end
   
   def validate_film
