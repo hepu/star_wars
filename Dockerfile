@@ -21,6 +21,9 @@ RUN bundle install
 
 ADD . /app/
 
+# NOTE: Adding master key here for testing purposes. This is not the intended place for the master.key
+ENV RAILS_MASTER_KEY="371f9e6694dbf119e4072332b80f53b7"
+
 # Add a script to be executed every time the container starts.
 COPY ./docker/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
