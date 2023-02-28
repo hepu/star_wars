@@ -12,7 +12,8 @@ Ruby on Rails API that allows the user to get information from Star Wars through
 
 #### With Docker (recommended)
 
-- `docker compose build`
+- If it's the first time running the project, execute: `sh ./docker/initialize.sh`
+- Then only start the container when needed with: `docker compose up`
 
 #### Standalone
 
